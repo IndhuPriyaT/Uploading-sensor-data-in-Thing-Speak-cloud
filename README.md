@@ -1,6 +1,6 @@
 # Name: Indhu Priya.T
 # Register Number: 24007533
-# Experiment-6:Uploading temperature sensor data in Thing Speak cloud
+# Experiment-3:Uploading temperature sensor data in Thing Speak cloud
 
 # AIM:
 To monitor the temperature sensor data in the Thing speak using an ESP32 controller.
@@ -137,6 +137,8 @@ Serial.print("Attempting to connect to SSID:");
 # CIRCUIT DIAGRAM:
 
 <img src="https://github.com/user-attachments/assets/6b107b9c-c580-459b-a8ec-70f3a5dfaac0" width="500" height="400" />
+
+
 # OUTPUT:
 
 <img src="https://github.com/user-attachments/assets/b1b10558-5a46-4f12-afab-b23d5422f329" width="500" height="400" />
