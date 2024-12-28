@@ -1,4 +1,6 @@
-# Uploading temperature sensor data in Thing Speak cloud
+# Name: Indhu Priya.T
+# Register Number: 24007533
+# Experiment-6:Uploading temperature sensor data in Thing Speak cloud
 
 # AIM:
 To monitor the temperature sensor data in the Thing speak using an ESP32 controller.
@@ -71,10 +73,76 @@ Automatically act on your data and communicate using third-party services like T
 
 
 # PROGRAM:
+```
+#include "ThingSpeak.h"
+#include <WiFi.h>
+#include "DHT.h"
+
+char ssid[]="Yo-Yo";
+char pass[]="pizza1010";
+
+const int uno= 23;
+long T;
+float temperature = 0;
+WiFiClient client;
+DHT dht1(23,DHT11);
+
+unsigned long myChannelField =  2785429;
+const int TemperatureField = 1;
+const int HumidityField = 2;
+
+const char* myWriteAPIKey = "O8H8F8HY38P7BG34";
+
+void setup() {
+   Serial.begin(115200);
+   pinMode (uno,INPUT);
+   ThingSpeak.begin(client);
+   dht1.begin();
+   delay(1000);
+
+}
+
+void loop() {
+  if (WiFi.status() != WL_CONNECTED)
+  {
+Serial.print("Attempting to connect to SSID:");
+    Serial.println(ssid);
+    while (WiFi.status() !=WL_CONNECTED)
+    {
+      WiFi.begin(ssid,pass);
+      Serial.print(".");
+      delay(5000);
+    }  
+    Serial.println("\nConnected.");
+  } 
+   float temperature = dht1.readTemperature();
+   float humidity = dht1.readHumidity();
+
+   Serial.print("Temperature: ");
+   Serial.print(temperature);
+   Serial.println("Celcius");
+
+   Serial.print("Humidity ");
+  Serial.print(humidity);
+   Serial.println("g.m-3");
+
+   ThingSpeak.writeField(myChannelField, TemperatureField , temperature , myWriteAPIKey);
+   ThingSpeak.writeField(myChannelField, HumidityField , humidity , myWriteAPIKey);
+   delay(100);
+   
+}
+
+```
 
 # CIRCUIT DIAGRAM:
 
+<img src="https://github.com/user-attachments/assets/6b107b9c-c580-459b-a8ec-70f3a5dfaac0" width="500" height="400" />
 # OUTPUT:
+
+<img src="https://github.com/user-attachments/assets/b1b10558-5a46-4f12-afab-b23d5422f329" width="500" height="400" />
+
+<img src="https://github.com/user-attachments/assets/15dc960a-b73f-4f44-b172-67c2c8df337b" width="500" height="400" />
+ 
 
 # RESULT:
 
